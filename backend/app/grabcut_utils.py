@@ -1,7 +1,5 @@
-import io
 import numpy as np
 import cv2
-from PIL import Image
 
 def read_image_from_bytes(image_bytes: bytes) -> np.ndarray:
     """Baca file gambar dari bytes dan ubah ke format OpenCV (BGR)."""
