@@ -19,6 +19,7 @@ app.add_middleware(
 async def health():
     return {"status": "ok"}
 
+# Main endpoint for background removal
 @app.post("/remove-background")
 async def remove_background(
     file: UploadFile = File(...),
@@ -32,11 +33,13 @@ async def remove_background(
     if not file.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="File harus berupa gambar.")
 
+    # Baca gambar
     image_bytes = await file.read()
     rect = None
     if None not in (x, y, w, h):
         rect = (x, y, w, h)
 
+    # fungsi untuk menghapus background
     try:
         png_bytes = remove_background_from_bytes(image_bytes, rect=rect, iter_count=iter_count)
         return StreamingResponse(io.BytesIO(png_bytes), media_type="image/png")
