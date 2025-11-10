@@ -11,7 +11,6 @@ def test_health():
     assert r.json()["status"] == "ok"
 
 def test_remove_background_returns_png():
-    # buat gambar putih sederhana sebagai test
     from PIL import Image
     img = Image.new("RGB", (200, 200), (255, 0, 0))
     buf = io.BytesIO()
