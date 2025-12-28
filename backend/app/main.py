@@ -40,7 +40,7 @@ async def remove_background(
         rect = (x, y, w, h)
 
     # fungsi untuk menghapus background
-    try:
+    try:    
         png_bytes = remove_background_from_bytes(image_bytes, rect=rect, iter_count=iter_count)
         return StreamingResponse(io.BytesIO(png_bytes), media_type="image/png")
     except Exception as e:
